@@ -1,0 +1,17 @@
+# Rest Api :- JSON DATA
+
+for data -  mackaaro.com
+
+GET /users - HTML DOCUMENT only on browser
+GET /api/USERS - List all USERS JSON on cross platform
+
+// dynamic path parameters
+GET /api/users/:id
+GET /api/USERS/1 - GET the user with id 1
+GET /api/USERS/2 - GET the user with id 2
+
+POST /api/USERS - Create a new user
+
+PATCH /api/USER/ID - EDIT the user with id 1
+
+DELETE /api/USERS/1 - DELETE THE USER WITH ID 1

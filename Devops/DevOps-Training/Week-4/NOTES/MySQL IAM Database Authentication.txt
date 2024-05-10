@@ -1,0 +1,59 @@
+ ## Connect to the DB instance or cluster endpoint by running the following command. Enter the master password to log in.
+->> mysql -h {database or cluster endpoint} -P {port number database is listening on} -u {master db username} -p
+
+##  Create a database user account that uses an AWS authentication token instead of a password:
+->> CREATE USER {dbusername} IDENTIFIED WITH AWSAuthenticationPlugin as 'RDS';
+
+##   By default, the database user is created with no privileges. This appears as GRANT USAGE when you run SHOW GRANTS FOR {dbusername}. To require a user account to connect using SSL, run this command :-
+->> ALTER USER {dbusername} REQUIRE SSL;
+
+## Run the exit command to close MySQL. Then, log out from the DB instance.
+
+## Generate an AWS authentication token to identify the IAM role :-
+->> aws rds generate-db-auth-token --hostname {db or cluster endpoint} --port 3306 --username {db username}
+
+## Add an IAM policy that maps the database user to the IAM role :- 
+
+{
+   "Version": "2012-10-17",
+   "Statement": [
+      {
+         "Effect": "Allow",
+         "Action": [
+             "rds-db:connect"
+         ],
+         "Resource": [
+             "arn:aws:rds-db:us-east-2:1234567890:dbuser:db-ABCDEFGHIJKL01234/db_user"
+         ]
+      }
+   ]
+}
+            
+## Generate an AWS authentication token to identify the IAM role :-
+
+->> aws rds generate-db-auth-token --hostname {db or cluster endpoint} --port 3306 --username {db username}
+
+## Download the SSL root certificate file or certificate bundle file :-
+->>  wget https://s3.amazonaws.com/rds-downloads/rds-ca-2019-root.pem
+
+## Connect to the RDS DB instance using IAM role credentials and the authentication token :-
+
+->> $ wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
+
+RDSHOST="rdsmysql.abcdefghijk.us-west-2.rds.amazonaws.com"
+TOKEN="$(aws rds generate-db-auth-token --hostname $RDSHOST --port 3306 --region us-west-2 --username {db username})"
+
+## Depending on the certificate that you are using (RootCA or Bundle), run one of the following commands:
+
+RootCA command:
+mysql --host=$RDSHOST --port=3306 --ssl-ca=/sample_dir/rds-ca-2019-root.pem --enable-cleartext-plugin --user={db username} --password=$TOKEN
+
+Bundle command: 
+mysql --host=$RDSHOST --port=3306 --ssl-ca=/sample_dir/rds-combined-ca-bundle.pem --enable-cleartext-plugin --user={db username} --password=$TOKEN
+
+
+LINK :-  https://repost.aws/knowledge-center/users-connect-rds-iam
+Link :- https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html
+
+
+

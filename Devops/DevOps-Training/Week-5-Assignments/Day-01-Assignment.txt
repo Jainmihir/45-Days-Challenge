@@ -1,0 +1,56 @@
+## Create documentation about the basics of Terraform. Include your learnings about Terraform providers, TF state, lock file, and basic commands :- 
+
+## Terraform :- 
+-> Terraform is used to create infrastructure as a code.
+-> you can not need set manually to set the vm with using terraform file we can create the infrastructure by the code
+-> providers is used to setup your infrastructure
+
+## Providers :- 
+-> A provider in Terraform is a plugin that enables interaction with an API. This includes Cloud providers and Software-as-a-service providers. The providers are specified in the Terraform configuration code. They tell Terraform which services it needs to interact with
+
+
+## Basic commands :- 
+:: terraform Init :-  
+    -> it is going to contact clod service provider and it is going to download all the required dependicies on your  local system.
+    -> it is going to download all the required provider dependicies
+    -> init is set the local environment for configure your infrastructure.
+:: terraform plan :- 
+    -> how many resource we are going to add,update,delete 
+:: terraform apply :- 
+    -> run your Virtual machines on service provider.
+:: terraform destroy :- 
+    -> it is destroy all the resources in your Virtual machine.
+:: terraform validate :-
+    -> to check the configuration files is ready to create an virtual machine or not.
+
+
+# Terraform Lock File :- 
+-> It is used to lock the versions of the provider plugins and modules being used in your Terraform configuration, ensuring that subsequent runs of terraform apply or terraform plan use the same versions.
+
+
+# Terraform state file :- 
+-> Terraform.tfstate is a file that Terraform uses to track the state of the infrastructure it manages. The state file contains information about the resources that Terraform has created or is managing, such as the resource type, attributes, and relationships. Terraform uses the state file to determine which changes to make to your infrastructure when you run terraform apply.
+-> The terraform.tfstate file is created automatically by Terraform when you run terraform apply for the first time. It is stored in the same directory as your Terraform configuration files. 
+-> Terraform will update the state file every time you run terraform apply.
+-> 	it is called as Current state file
+->  Created automatically when you run terraform apply for the first time
+->  Updated every time you run terraform apply
+->  Stored in the same directory as your Terraform configuration files
+
+# terraform.tfstate.backup :- 
+-> The terraform.tfstate.backup file is a backup of the terraform.tfstate file. Terraform automatically creates a backup of the state file before making any changes to the state file. This ensures that you can recover from a corrupted or lost state file.
+-> Backup of the state file
+-> Created automatically before Terraform makes any changes to the state file
+-> Overwritten every time Terraform makes changes to the state file
+-> Stored in the same directory as the state file
+:: Here are some reasons why you might need to restore your Terraform state from a backup:
+-> If the terraform.tfstate file is corrupted or lost.
+-> If you accidentally delete a resource from Terraform management.
+-> If you need to revert to a previous version of your infrastructure.
+:: To restore your Terraform state from a backup, follow these steps:
+-> Rename the terraform.tfstate.backup file to terraform.tfstate.
+-> Run terraform init.
+-> Run terraform apply.
+
+link :-  https://www.devopsschool.com/blog/what-is-terraform-tfstate-backup-file-in-terraform/#:~:text=backup%20file%20is%20a%20backup,corrupted%20or%20lost%20state%20file.
+

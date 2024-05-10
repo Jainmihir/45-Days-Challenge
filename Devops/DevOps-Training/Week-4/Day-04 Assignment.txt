@@ -1,0 +1,33 @@
+## AWS Backup :- 
+-> backups of each services
+-> example:- like we have one service called vm or the ebs or s3 we have to backup the each service backup with the help of aws backup
+
+## Disaster Recovery :- 
+1:- backup & restore
+2:- pilot light
+3:- warm standup
+4:- multisite
+## implementations :-
+1:- create a IAM role and give permission awselasticrecovery
+2:- give instance to given role
+3:- then ssh to instance 
+-> run this script :-
+:: follow link :-  https://docs.aws.amazon.com/mgn/latest/ug/linux-agent.html
+:: cmd :- sudo -i for the root user
+:: script :- wget -O ./aws-replication-installer-init https://aws-application-migration-service-us-east-1.s3.us-east-1.amazonaws.com/latest/linux/aws-replication-installer-init
+:: sudo chmod +x aws-replication-installer-init; sudo ./aws-replication-installer-init
+:: give access key ID's
+:: press :- yes for volume replication
+:: in the console we have source server
+
+:: ec2 ->> console we have replication server we have t3.small so you can set from the settings
+::you can choose Disaster recovery settings :- 
+
+
+
+link :- https://docs.aws.amazon.com/mgn/latest/ug/agent-installations-in-aws.html
+link :- https://docs.aws.amazon.com/drs/latest/userguide/failback-failover-region-region.html
+link :- https://docs.aws.amazon.com/mgn/latest/ug/agent-installations-in-aws.html
+youtube :- https://www.youtube.com/watch?v=mKHD_AeRYEs
+youtube :- https://www.youtube.com/watch?v=hVRetBbQcVE
+youtube:- https://www.youtube.com/watch?v=Albwk0b1vvA

@@ -1,0 +1,16 @@
+[
+    {
+        "id" : 1,
+        "img" : "https://m.media-amazon.com/images/I/61-r9zOKBCL._SL1500_.jpg",
+        "name" : "Iphone 14 Pro Max",
+        "price" : "$200"
+    },
+    {
+        "id": 2,
+        "img" : "//images.samsung.com/is/image/samsung/p6pim/in/sm-a156ezbqins/gallery/in-galaxy-a15-5g-sm-a156-490596-sm-a156ezbqins-539413402?$2052_1641_PNG$",
+        "name" : "Samsung Galaxy",
+        "price" : "$200"
+    }
+]
+
+

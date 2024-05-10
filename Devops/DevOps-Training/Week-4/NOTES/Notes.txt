@@ -1,0 +1,41 @@
+## Connect a IAM role with the ec2 Instance :-
+
+1:-  Create a IAM role and AWS service and permissions policy
+2:-  Go To instance -> select actions -> select security -> modify IAM Role
+3:- EC2 INSTANCE INSTALLATION IN AWS CLI
+-> curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+-> unzip awscliv2.zip
+-> sudo ./aws/install 
+4:- access the services 
+
+link :- https://www.youtube.com/watch?v=NHAuCWIHevk
+
+## ECR :- 
+CREATING A REPO :-  aws ecr create-repository --repository-name <REPO NAME>
+INSTALL DOCKER IN UBUNTU :-  sudo apt install docker.io
+enable the docker in the machine :- sudo systemctl enable docker
+to check status of docker installation :- sudo systemctl status docker
+to start and run the docker service :- sudo systemctl start docker 
+to create a first docker container :- sudo docker run hello-world
+
+## commands to create a docker file or container :- 
+1:- create a new file :- mkdir foldername
+2:- cd foldername
+3:- echo "hello,world!" > index.html
+4:- touch DockerFile 
+5:- vi DockerFile -> FROM nginx
+COPY index.html /usr/share/nginx/html
+6:- docker info
+7:- sudo docker build -f DockerFile -t myapp .
+8:- docker images
+9:- sudo docker run -d -p 8080:80 myapp
+10:- sudo docker ps
+for pushing the code in ecr
+11:- sudo docker build -f DockerFile -t mihir .
+12:- docker tag mihir:latest 975050349146.dkr.ecr.us-east-2.amazonaws.com/mihir:latest
+13:- docker push 975050349146.dkr.ecr.us-east-2.amazonaws.com/mihir:latest
+
+setup docker LINK :-  https://www.youtube.com/watch?v=cqbh-RneBlk
+setup docker build :-  https://www.youtube.com/watch?v=tLCavZ98GPA
+setup docker file :- https://www.youtube.com/watch?v=C-bX86AgyiA
+

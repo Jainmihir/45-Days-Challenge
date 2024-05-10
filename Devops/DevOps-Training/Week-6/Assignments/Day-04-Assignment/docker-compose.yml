@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ubuntu:
+    container_name: my_ubuntu
+    image: ubuntu:latest
+
+  apache:
+    container_name: my_apache
+    image: httpd:latest
+    ports:
+      - "8080:80"
+
+  nginx:
+    container_name: my_nginx
+    image: nginx:latest
+    ports:
+      - "8081:80"

@@ -1,0 +1,551 @@
+
+## docker images :- 
+images is like a os 
+docker images are templates used to create docker containers
+
+docker images -> to print the all images in local
+docker images --help
+docker images -q <id>
+docker pull <image_name>
+docker images -f "dangling=false" -> associated with the container or not
+docker run <image> -> it creates a container of that image
+docker rmi <image> -> to remove the image 
+docker rmi -f <image> -> to remove forced  (if uses any containers)
+docker inspect <image> -> all the info of image
+
+
+
+## docker container :- 
+container is a running instances of a images
+commands :- 
+docker ps -> list all the containers
+docker ps -a -> list all not running containers
+docker start <container_name | id >
+docker stop <container_name | id > >> immediate nhi hota h yeh or it sends the termainate signal first and wait seconds and then send the kill signal 
+docker pause <container_name | id >
+docker unpause <container_name | id >
+docker top <container_name | id >
+docker stats <container_name | id >
+docker attach <container_name | id >
+docker kill <container_name | id > >> immediate terminate kr deta hai and sending the kill signal
+docker rm <container_name | id >
+
+# dangling images :- 
+dangling images are those images are not tags .
+docker images -f dangling=true
+docker images -f dangling=false
+to remove :- docker rmi $(docker images -f dangling=true)
+
+# docker export and import :-
+docker export <container_name> > mihir_jain.tar
+docker import <file.tar> <new_image.name>
+
+example :- 
+docker export mihir > mihir_jain.tar
+docker import mihir_jain.tar custom_image
+
+# docker ignore :- 
+save with the > .dockerignore
+apn nhi chahte ki kuch files docker images create hote hue uske undr jaye toh iske liye apn .dockerignore file ka use krte h 
+.dockerignore 
+> filename1.txt
+> filename2
+> *.js
+
+# docker exec -itd :-
+docker exec -itd >> this command would create and start and container based on the ubuntu image with an interactive terminal allocated and running in background
+
+# docker cp :- 
+docker cp <local_path_> <container_id>:/myfiles
+
+
+## docker file :- 
+a simple text file with all instructions to build an docker image 
+automation of docker image creation.
+docker file is basically a text file and it contains some set of instruction
+
+FROM >> for base image : this command must be on top of the docker file
+
+RUN  >> To execute commands it will create a layer in image
+
+MAINTAINER >> author/owner/description
+
+COPY >> copy files from local system (docker vm) wee need to provide source, destination (we can't download file from internt and any remote)
+
+ADD >> Similar to copy but, it provides a feature to download files from internet , also we extract file at docker image side
+
+EXPOSE  >> to expose ports such as port 8080 for tomcat , port 80 for nginx etc.
+
+WORKDIR >> to set working directory for a container
+
+CMD >> execute commands but during container creation
+
+ENTRYPOINT  >> similar to CMD , but has higher priority over CMD, First commands will be executed by entrypoint only
+
+ARG >>  This default value can also be overridden using a simple option with the Docker build command. The difference between ENV and ARG is that after you set an environment variable using ARG, you will not be able to access that later on when you try to run the Docker Container. we will discuss how to use the ARG instruction inside a Dockerfile to set parameters.
+
+ENV >> Environment Variables (access with the : echo $variable_name )
+
+# docker tags :-
+tagging of an image means creating a reference or alias of an image with different identity
+cmd :- 
+docker tag <image_id or reponame:version> <tagname which is again the newreponame:newversion>
+example :- docker tag ubuntu:latest <docker_hub_id>/<repository_name>:<imagetagorversion>
+
+# ARG VS ENV :-
+from
+ENV app_env="prod"
+ARG app_dir
+RUN echo ${app_dir}
+copy filecopytest.txt ${app_dir}/filecopy.txt
+workdir /
+CMD ["sh"]
+
+cmd : docker build --build-arg app_dir="app_dir_arg" --tag arg_env:1.0 
+docker run -it --env app_env="prod" 
+
+step 1:- create a docker image 
+## getting a base image 
+FROM ubuntu
+FROM scratch  -> if you build an empty image 
+
+MAINTAINER Mihir jain <jainsuresh713@gmail.com>
+
+RUN apt-get update (if you want run the commands during bulid image creation)
+CMD (if you run something on command during the container creation cli)
+
+
+->> if you build the image 
+docker build <path>
+docker build -t <image_name> .
+docker run <image_id>
+
+1:- create a file named Dockerfile
+2:- Add instruction in Dockerfile
+3:- Build dockerfile to create image 
+4:-  Run image to create container
+
+link :- https://github.com/wsargent/docker-cheat-sheet#dockerfile
+
+->> create a docker image :- 
+Docker File :- 
+FROM <select a base image >
+RUN <installing in the base image >
+COPY <source> <destination>
+ENTRYPOINT [""] <hamse execute hoga jb bhi docker file call hogi> runtime pr execute hoga
+
+
+docker build -t <Image_name> <path of the file or you can same folder then . >
+docker run -it <image_name > for creating a container
+
+## docker rename :- 
+docker tag <image_id> <new_image_name> : <new_image_tag>
+docker tag <existing-image-name:existing-tag><new-image-name>:<new-image-tag>
+docker rmi <existing-image-name:existing-tag>
+
+-> container rename :-
+docker rename <container_id> <name>
+
+## port mapping :- 
+port expose krne pdte haar container me 
+command :- docker run -it -p 1025:1025 <container_name>
+mount bhi kr skte h 
+command :- docker run -it -p 6000:1025 <container_name>
+enviornment varibles agr extra data store krwna h toh 
+docker run -it -p 1025:1025 -e key=value <container_name>
+docker port <container_name> -> o/p -> 80/tcp -> 0.0.0.0/80 >> port expose check krne ke liye 
+
+
+## docker compose :-
+
+-> tool for defining & running multi-container docker applications
+-> use yamls files to configures application services (docker-compose.yml)
+-> can start all services with a single command : docker compose up
+-> can stop all services with a single command : docker compose down 
+-> can scale up selected services when required 
+
+docker-compose -v
+
+1:-  create docker compose file at any location on your system 
+docker-compose.yml
+version: ''
+services:
+    web:
+     container_name: <container_name>
+     image:<image_name>
+    database:
+      container_name: <container_name>
+      image:<database_name>
+
+2:- check the validity of file by command
+docker-compose config
+
+3:- run docker-compose.yml file
+docker-compose up 
+docker-compose down
+
+->> how to scale services
+docker-compose --help
+docker-compose up --scale <service_name>=4
+docker-compose down
+
+
+## docker volumes :- 
+
+-> volumes are the preferrred mechanism for persisting data generated by and used by docker containers.
+-> decoupling container from storage.
+-> attach volume to container
+-> share volume (storage / data ) among different containers
+-> on deleting container volume does not delete.
+  create      Create a volume
+  inspect     Display detailed information on one or more volumes
+  ls          List volumes
+  prune       Remove all unused local volumes
+  rm          Remove one or more volumes
+
+docker volume --help
+docker volume create <volume_name>
+docker volume ls 
+docker volume inspect <volume_name>
+docker volume rm <volume_name>
+docker run --name <name> -v <volume_name>:<path_of_the_home> -p 8080:8080 -p 50000:50000 <name_of_the_image>
+-> attach one volume to another container
+docker run --name <name1> -v <volume_name>:<path_of_the_home> -p 8080:8080 -p 50000:50000 <name_of_the_image>
+-> bind mount in this we use physical location of the 
+docker run --name <name2> -v <localpath>:<path_of_the_image> -p 8080:8080 <name_of_the_image>
+
+docker run -dp 127.0.0.1:3000:3000 --mount type=volume,src=todo-db,target=/etc/todos getting-started
+-> create a volume with the docker file :-
+FROM UBUNTU
+VOLUME ["/myvolume1"]
+then we create a docker file with this command
+docker build -t <image_name> .
+then create a container
+docker run -it --name container1 <image_name>
+then we share this volume to another container
+docker run -it --name container2 --privileged=true --volumes-from container1 <image_name>
+
+-> create a volume with the command :- 
+docker run -it --name container3 -v /volume2 ubuntu 
+
+-> mapping of containers :- 
+docker run -it --name <name_of_the_container> -v <local_path>:<container_path> --privileged=true ubuntu 
+example :- 
+docker run -it --name hostcont -v /home/mihir:/jain --privileged=true ubuntu 
+-> Docker privileged mode grants a Docker container root capabilities to all devices on the host system. Running a container in privileged mode gives it the capabilities of its host machine. For example, it enables it to modify App Arm and SELinux configurations.
+
+-> Adding a Volume To a Running Docker Container :-
+
+
+## container inside container :-
+-> we can run but that is not for dev environment it just for practising
+-> Docker containers provide a safe and convenient way to test Dockerfiles without affecting the host system. Nested      containers can also be useful in training environments or labs where there's a need to simulate complex network configurations or systems.
+-> you see the error :- 
+docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?.
+systemctl status docker
+dind or dood
+link :-  https://devopscube.com/run-docker-in-docker/
+link :-  https://www.youtube.com/watch?v=NEO5U5ZVsj4
+why ? == unit testing and create some pipelines 
+use cases :- 
+
+
+## create image with existing docker container :-
+https://www.howtogeek.com/devops/how-to-create-a-docker-image-from-a-running-container/
+
+example :-  
+cmd :- docker run -it --name mihir ubuntu
+c /root  : c->change
+A /root/.bash  : A-> Append
+D /root/myfile : D-> Deletion
+
+Now, Create image of this container
+docker commit <container_name> <image_name>
+Now, create container from this image 
+docker run -it --name <new_name_of_this_container> <image_name>
+
+## diff b/w docker attach and docker exec :-
+docker attach -> existing process ke undr le jayega
+docker exec ->  yeh new process ke undr le jayega
+
+## images stored path :-
+/var/snap/docker/common/var-lib-docker/overlay2/
+https://www.freecodecamp.org/news/where-are-docker-images-stored-docker-container-paths-explained/
+
+## docker networking :- 
+container outerworld ke network se connected hai
+default me bridge network ka use krta h 
+by default 3 network hee hote hai bridge, host , none
+
+# Bridge :- 
+host machine ke niche docker ka bridge network create hota h fir jitne bhi future me containers create hote h woh sb docker bridge network se connected hote hai
+port expose krne pdte hai
+
+# host :- 
+host me sirf apni local machine ke host se connected hota h container 
+diff yeh bridge or isme ki 
+bridge :- port expose krne pdte hai (docker run -it -p 8080:8080 ubuntu)
+host :- port expose nhi krne pdte  (docker run -it ubuntu)
+>> docker run -it --network=host <image_name>
+
+# None :- 
+us container ke pass ka network ka access hee nhi hai
+>> docker run -it --network=none <image_name>
+
+# overlay :-
+multiple docker engines or multiple docker daemons ko connect kr skte hai 
+and enable swarm services to communicate with each other
+
+# ipvlan :-
+ipvlan me containers ko ipv4 and ipv6 address provide krwa skte hai
+
+# macvlan :-
+macvlan me containers ko mac address de skte hai and vitually connected ke skte hai directly router se
+
+
+## docker context :-
+an easy way to store connections informations and work with multiple docker engines and other container platforms
+
+why multiple docker engines:-
+better emulate your production environment
+use a different machine for builds
+develop and test in the clouds
+manage depolyments
+
+default context :- 
+a built in context that reverts to docker_host based engine targetting and configuration
+
+active context :-
+the currently selected context se via docker context use that's being used when no context is specified on the command line
+
+Docker context is a mechanism in the Docker CLI that provides a streamlined way to interact with multiple Docker endpoints
+Each context contains all information required to manage resources on the daemon
+You can set up contexts for each of your hosts and switch between them on the fly
+When a context is active, Docker will direct all of your commands to that host
+Docker context also makes it possible to connect to remote Docker instances and manage them from a single machine
+
+So, what is Docker context? Well, it allows you to manage many different hosts through either HTTP API (may be SSL) or through Unix Socket over SSH tunnel.
+
+If you have many independent Docker hosts and deploying different apps to them, the contexts are best suited for you; without leaving your local environment.
+
+Before discovering contexts (actually happened to be after dealing with Kubernetes Contexts) I was either overriding DOCKER_HOST environment variable or ssh‘ing into the server where I run Docker commands. SSH can be painful sometimes if your connection is mobile or unstable. It may hang, it may drop. When it drops sometimes you lost your Bash history. Which is also a very sad situation to be in. 
+
+cmd :- docker context create docker-test --docker host=tcp://docker:2375
+docker context use docker-test
+export DOCKER_CONTEXT=docker-test
+
+
+
+cmd  :-  docker version
+ssh into the machine
+docker context create rpi --description "name" --docker "host="
+docker context ls
+docker context use rpi
+DOCKER_BUILDKIT=1 docker compose up
+
+
+>> docker context provide a general abstraction layer for container platforms
+>> you can create contexts for 
+  >> docker engines
+  >> docker swarms
+>> you can use docker stack and docker compose to deploy projects on these platforms
+
+
+
+
+# create your custom network :-
+docker network create -d bridge <name_of_network>
+docker network ls
+docker run -it --network=<name_of_N/W-you_created> --name mihir1 ubuntu
+dusre container se communicate kr skte h isse 
+apt get-update
+apt install iputils-ping
+example :- 
+docker network create -d bridge mihir1
+docker run -it --name mihir_jain --network=mihir1 ubuntu
+docker run -it --name mihir_jain2 --network=mihir1 ubuntu
+ -> ping mihir_jain
+
+Example :-
+1:- create a container 
+docker run -it --name server1 ubuntu
+2:- create a network
+docker network create Mihir1
+3:- create a container2
+docker run -it --name server2 --network=Mihir1 ubuntu
+4:- connect server1 to with this network
+docker network connect Mihir1 server1
+5:- then ping from any container
+
+
+# network commands :- 
+docker network ls ->> to print all the network in the local 
+docker network inspect <network_name> ->> to inspect the network (konsa network connected hai)
+
+
+# docker memory :- 
+when multiple containers are consume the ram , so i give the memory to specific containers
+docker run -it -m <ram_amount> ubuntu
+example :- docker run -it -m 7M ubuntu
+
+
+# docker multi-staged :-
+normally apn single staged build use krte hai
+example :-
+
+## troubleshotting of containers :-
+# docker logs :-
+ky chl ra h inside the container agr koi bug h toh kese check krenge 
+docker logs <container_name>
+docker logs -f <container_name> -> live docker logs
+docker logs -t <container_name> -> with the timestamp.
+docker logs --tail 2 <container_name> -> last 2 logs
+docker logs --f --until=2s <container_name>  -> since timestamps
+
+# docker event :-
+Get real time events from the server and it is capturing the events
+cmd  :- docker events
+
+# docker stats :-
+Display a live stream of container(s) resource usage statistics
+docker stats <container_name>
+docker stats -a >> all the containers
+
+# docker top :-
+Docker's top command allows users to display the output for the main process of a given container ID or name
+it shows running process 
+
+
+
+# docker swarn :-
+A swarm is a group of machines that are runnig docker and joined into a cluster.
+docker swarm is tool for container orchistration
+
+example :-
+you have 100 container.
+you need to do :- 
+- health check on every container.
+- ensure all containers are up on every system.
+- scaling the container up or down depeding on the load.
+- adding updates/changes to all the containers.
+
+orchestration - managing and controlling multiple docker containers on a single service.
+
+:: Installation :- 
+sudo apt install virtualbox
+
+command :- 
+docker-machine  --help
+docker-machine create --driver virtualbox manager >> to create a manager 
+docker-machine env manager >>  to connect docker client to the docker engine 
+docker-machine ls >> to print the all machines
+docker-machine create --driver virtualbox worker1 >> created a two workers
+docker-machine create --driver virtualbox worker2 >> created a worker
+
+A swarm is a group of machines that are running Docker and joined into a cluster 
+Docker Swarm is a tool for Container Orchestration
+
+Let’s take an example
+You have 100 containers
+You need to do 
+- Health check on every container
+- Ensure all containers are up on every system
+- Scaling the containers up or down depending on the load
+- Adding updates/changes to all the containers
+
+Orchestration - managing and controlling multiple docker containers as a single service
+Tools available - Docker Swarm, Kubernetes, Apache Mesos
+
+Pre-requisites
+1. Docker 1.13 or higher
+2. Docker Machine (pre installed for Docker for Windows and Docker for Mac)https://docs.docker.com/machine/insta...
+https://docs.docker.com/get-started/p...
+
+Step 1 :  Create Docker machines (to act as nodes for Docker Swarm)   Create one machine as manager and others as workers
+    docker-machine create --driver hyperv manager1    docker-machine create --driver virtualbox manager1
+
+   docker-machine:Error with pre-create check: “exit status 126”
+   https://stackoverflow.com/questions/3...
+   brew cask install virtualbox;
+
+   Create one manager machine
+   and other worker machines
+
+Step 2 :  Check machine created successfully
+    docker-machine ls
+    docker-machine ip manager1
+
+Step 3 :  SSH (connect) to docker machine
+    docker-machine ssh manager1
+
+Step 4 :  Initialize Docker Swarm    docker swarm init --advertise-addr MANAGER_IP
+    docker node ls
+    (this command will work only in swarm manager and not in worker)
+
+Step 5 :  Join workers in the swarm
+    Get command for joining as worker
+    In manager node run command
+    docker swarm join-token worker
+    This will give command to join swarm as worker
+
+    docker swarm join-token manager
+    This will give command to join swarm as manager
+
+    SSH into worker node (machine) and run command to join swarm as worker
+   
+    In Manager Run command - docker node ls to verify worker is registered and is ready
+  
+    Do this for all worker machines
+
+Step 6 :  On manager run standard docker commands
+    docker info
+    check the swarm section 
+    no of manager, nodes etc
+
+    Now check docker swarm command options 
+    docker swarm 
+
+Step 7 :  Run containers on Docker Swarm
+    docker service create --replicas 3 -p 80:80 --name serviceName nginx
+    Check the status:
+    docker service ls
+    docker service ps serviceName
+    Check the service running on all nodes
+    Check on the browser by giving ip for all nodes
+
+Step 8 :  Scale service up and down
+   On manager node 
+   docker service scale serviceName=2
+
+Inspecting Nodes (this command can run only on manager node)
+docker node inspect nodename
+docker node inspect self
+docker node inspect worker1
+
+Step 9 : Shutdown node
+   docker node update --availability drain worker1
+
+Step 10 :  Update service
+   docker service update --image imagename:version web
+   docker service update --image nginx:1.14.0 serviceName
+
+Step 11 :  Remove service
+   docker service rm serviceName
+docker swarm leave : to leave the swarm
+docker-machine stop machineName : to stop the machine
+docker-machine rm machineName : to remove the machine
+
+REFERENCES:
+https://docs.docker.com/get-started/p...
+https://rominirani.com/docker-swarm-t...
+
+FAQs & Helpful Tips:
+A swarm is a group of machines that are running Docker and joined into a cluster
+A cluster is managed by swarm manager
+The machines in a swarm can be physical or virtual. After joining a swarm, they are referred to as nodes
+Swarm managers are the only machines in a swarm that can execute your commands, or authorise other machines to join the swarm as workers
+
+Workers are just there to provide capacity and do not have the authority to tell any other machine what it can and cannot do
+
+you can have a node join as a worker or as a manager. At any point in time, there is only one LEADER and the other manager nodes will be as backup in case the current LEADER opts out
+ 

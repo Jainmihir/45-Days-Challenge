@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API-Promises</title>
+</head>
+<body>
+    <!-- <form id="myForm" >
+        <label> First Name :</label>
+        <input type="text" class="field" name="name" required>
+        <label> Email :</label>
+        <input type="email" class="field" name="email" required>
+        <label> Mob No :</label>
+        <input type="number" class="field" name="phno" required>
+        <input type="submit"  value="submit">        
+    </form> -->
+    <!-- <p> Lorem ipsum dolor sit, <span>amet</span> consectetur adipisicing elit. Saepe, quam.
+    </p> -->
+    <!-- <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul> -->
+    <!-- <h1> Count Down Timer : </h1>
+    <div id="timer">--:--</div> -->
+    <!-- <h1> Moivational quotes</h1>
+    <div id="quoteDisplay">Loading.....</div> -->
+    
+
+    <script >
+        
+        
+        
+        
+        
+        // const quotesDisplay = document.querySelector("#quoteDisplay");
+        // const quotes = ["Lorem ipsum dolor sit amet.","Losadfjsfsfhnafnkrem ipsum dolor sit amet.","Lorem isagkngasgpsum dolor sit amet."]
+        // const changingquotes = ()=>{
+        //     const randomIndex = Math.floor(Math.random()*quotes.length);
+        //     quotesDisplay.innerHTML= quotes[randomIndex];
+        // }
+        // changingquotes();
+        // setInterval(changingquotes,2000);
+
+
+    //    const timer = document.querySelector("#timer");
+    //    let countdownseconds = 60;
+    //     function updateTimerDisplay(){
+    //         const minutes = Math.floor(countdownseconds / 60); // minute me change hojaye 
+    //         const seconds = countdownseconds % 60 ; // isse seconds aajayenge
+    //         const formattedTime = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    //         // we use pad start because we start the timer with 00:00
+    //         timer.textContent=formattedTime;
+    //     }
+    //     function countdown(){
+    //         if(countdownseconds > 0){
+    //             countdownseconds--;
+    //             updateTimerDisplay();
+    //         }else{
+    //           clearInterval(interval);
+    //           alert("countdown completed");
+    //         }
+    //     }
+    //     updateTimerDisplay();
+    //     const interval = setInterval(countdown,1000);
+
+            
+       
+        // let myList = document.getElementById("myList");
+        // myList.addEventListener('click',(e)=> {
+        //     let clickedElement =  e.target;
+        //     if(clickedElement.tagName === 'LI'){
+        //         console.log("List Item Clicked",clickedElement.textContent);
+        //     }else{
+        //         console.log("Not clicked ")
+        //     }
+        // })
+        
+        
+        
+        
+        // let parent = document.querySelector("p");
+        // let child = document.querySelector("span");
+        // parent.addEventListener("click",()=>{
+        //     console.log("parent");
+        // },true);
+        
+   
+   
+   // function validateForm(){
+        //     let form  = document.getElementById('myForm');
+        //     if(form.checkValidity()){
+        //         // const validity = document.getElementsByClassName("field");
+        //         alert("Form Submitted");
+        //         form.reset();
+        //     }else{
+        //         alert("Form Not Submitted please enter required Field");
+        //     }
+        // }
+        // let form = document.getElementById('myForm');
+        // form.addEventListener("submit",(e)=>{
+        //     e.preventDefault();
+        //     validateForm();
+        // })
+
+        // function loadImage(src){
+        //     return new Promise((res,rej) =>{
+        //         let img = new Image(500,500);
+        //         img.onload = function(){
+        //             res(img);
+        //         };
+        //         img.onerror = function(){
+        //             rej(new Error("failed "+ src));
+        //         }
+        //         img.src = src;
+        //     })
+        // }
+        // let imageContainer = document.getElementById("imageContainer");
+        // let imageUrl = ["../image/1.jpg","../image/2.jpg","../image/3.jpg"];
+        // Promise.all(imageUrl.map(loadImage)).then(image => {
+        //     image.forEach(image => imageContainer.appendChild(image));
+        // }).catch(error => console.log(error));
+
+
+        // async function loadimages(){
+        //     let imageContainer = document.getElementById("imageContainer");
+        //     let imageUrl = ["../image/1.jpg","../image/2.jpg","../image/3.jpg"];
+        //     try{
+        //         const images = await Promise.all(imageUrl.map(loadImage));
+        //         images.forEach(image => imageContainer.appendChild(image));
+        //     }catch(error){
+        //         console.error("error");
+        //     }
+        // }
+        // loadimages();
+
+        
+
+        // function CreateImageElement(src) {
+        //     let img = document.createElement('img');
+        //     img.src = src;
+        //     return img;
+        // }
+        // let gallery = document.getElementById("gallery");
+        // let imageUrl = ["../image/1.jpg","../image/2.jpg","../image/3.jpg"];
+        // imageUrl.forEach(url => gallery.appendChild(CreateImageElement(url)));
+
+
+        
+        
+
+
+    </script >
+</body>
+</html>

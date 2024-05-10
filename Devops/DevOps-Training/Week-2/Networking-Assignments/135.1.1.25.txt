@@ -1,0 +1,12 @@
+
+Problem StateMent :- Write the IP address 135.1.1.25 mask 255.255.248.0 in CIDR notation
+Solution :- 
+
+Step 1:- 255.255.248.0 
+
+Step 2:- Decimal 248 =11111000 binary
+    ->   Then , we have to convert this in binary 11111111.11111111.11111000.00000000
+
+Step 3:- which means that 5 bits of this octet are used for the subnet
+
+Step 4:- So, The CIDR Notation will be -> 135.1.1.25/21

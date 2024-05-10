@@ -1,0 +1,45 @@
+// version
+
+//4.18.3
+
+1st Part -> 4
+2nd Part -> 18
+3rd Part -> 3
+
+// 3rd Part (Last Part) - Minor Fixes (Optional)
+Latest -> 4.18.5
+-> You can change with minor Fixes
+
+// 2nd Part - Recommended Bug fix (Security Fix)
+Latest -> 4.19.1
+-> you can change with minor updates
+
+// 1st part major Release - Major / Breaking Update
+4
+-> but you can not change because this is an application version
+
+
+^ -> carrot symbol major change nhi kr skte baki sb change kr skte hai 
+^4.18.1 -> 4.18.2 -> <5.0.0 |  ko lock kr do baki ki sb version change kr skte hoo
+
+^4.17.9
+4.18.1
+4.18.2
+4.18.3
+4.18.4
+
+5.1.0
+
+^ -> install all Recommended and Minor fixes automatically
+
+~4.18.1
+~ -> Recommended or major cannot chnage but we can change the 4.18.0 -> 4.18.999
+
+
+
+
+
+
+
+
+

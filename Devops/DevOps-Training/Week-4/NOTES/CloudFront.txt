@@ -1,0 +1,74 @@
+## cloud front: -
+-> we add dns name
+-> select protocol
+-> select origin path -> example :- www.amazon/mihir/test 
+   :  direct test server pr jaye
+   : /mihir is path pr jaye
+-> header :- cloud front is act like a middle ware in the system
+-> create policy cache:
+	: TTL - time to leave (kitni der me edge location pr rahu)
+-> deploying :- edge location pr jayegi sbse karib wale location pr jayegi only configuration set hogi sb egde locations pr 
+then we acces the url by distribution domain name
+ctrl shift r -> for hard reload (x-cache)
+
+## directly bhi access kr re h webserver ko toh thoda security km hogi because tum sb jghe se hee access kr re hoo usko 
+
+## actual server pr data change kr dia lekin cloud front pr wohi data aara h toh ky krnege ?
+ssh - to ec2
+echo "this is message" > ./index.nginx-debian.html
+solution :- go to cloud front ->  access create invalidation
+/image/* ->> folder ke under
+/* -> to all
+to update or delete the content of the file in cloud front
+### miss for cludfront -> actual server se data aara h 
+### hit for cloudfront -> edge location se data aara hai
+
+## how only ec2 instance accessible for cloud front : -
+-> because enduser->  link directly hit kr ra h ec2 instancesor load balancer ko
+-> solution :- only cloudfront ka security group access krenge 
+:: go to ip ranges.json saare ke ip address hai isme
+:: first idea ansible or terraform se kr skte hai isme baar baar updates aate rahenge fir baar list thodi change krenge
+:: vpc -> managed prefix list -. all the updates ip ranges are stored in this list its automatically update list
+:: copy the manged prefix list id 
+:: go to ec2 -> security group -> allow http and paste the managed prefix list id (inbound)
+:: then go invalidation in he cloudfront -> and delete previous (/*) -> create invalidations
+:: ab dono server connected honge ek sath kbhi cloud front or kbhi actual server (yeh dono aps me baat kr re h )
+
+## cloud front s3 bucket :-
+:: create private s3 bucket
+:: create distribution -> origin s3 bucket 
+:: orgin access control settings  -> create name -> origin type -> s3
+:: waf disable
+:: create distribution
+:: copy policy to s3 bucket permission  -> bucket policy -> save changes
+:: go to cloud front -> access the s3 bucket with distribution link 
+:: if needed cloud front -> default root structure access krwne ne ke liye /test 
+
+## cloud front based path routing and multiple origin  :-
+request s3 -> s3 bucket
+request api -> ec2 instnance
+:: craete a ec2
+:: create a distribution :- default route ./filename
+:: select origin in the distribution -> create new origin
+:: behaviour -> pattern select /nameofpath/*
+:: create a folder in ec2 instance and create a file for path
+:: same in s3 and upload file in png
+
+## cloud front error page :-
+-> in the s3 bucket -> upload 404.html
+-> in the distribution -> create error page response -> select http error code -> select yes -> set path of the error file
+
+
+## geogrphic restrication :-
+allow india only access in the india
+:: distribution -> usa block -> block from usa
+:: allow listed -> india
+curl krke dekh lo-> curl <link> ditribution link
+
+## how to disable cloudfront :-
+1:- disable within a minute hoga disable
+2:- delete 
+
+
+
+

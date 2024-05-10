@@ -1,0 +1,41 @@
+## cloud watch :- 
+-> it is monitor system in the aws 
+-> aws services ko manage krta h like ec2 or other services
+-> if cpu utlization is meet with threshold then the alarm will genrate 
+threshold>>alarm>>action>>SNS
+actions: - autoscale / lambda / anisible / python yeh services on hojaye
+
+
+## implementation simple cloud watch:- 
+
+1:- create a ec2 instance 
+2:- copy ec2 Id 
+3:- open cloud watch -> open matrix -> paste ec2id -> select resoure id which resource you can see the matrix 
+4:- you can decide your format -> you can select top of the area and gui select for this 
+
+by default :- 5min free
+by detail :- every 1 minute paid
+
+## create a dashboard  & alarm:- 
+:: select actions -> add to dashboard and create it -> save dashboard
+:: save dashboard -> share dashboard ( set for display ) -> set publically or authetication -> copy link -> see in the web browser
+:: create alarm -> click all alarm -> paste ec2 id -> select metrics -> select static -> select threshold value -> select action 
+-> select sns -> open simple notification service -> select name -> select standard -> select create -> select create subscription(email or sms like ) -> endpoint (email id) -> and confirm with email 
+-> copy arn and paste in configure actions of alarm -> select send and notification to and write name of sns .
+-> action -> ec2 instance -> select stop  -> check details of the alarm and create alarm
+-> for testing the instances -> ssh to ec2 
+cpu utlization increase :- command :- yes > /dev/null &
+kill the process :-  kill -9 <process id>
+-> check the process :- ok (means it will be ok ) | insufficient (it will not ok)
+
+cloudwatch-agent:- 
+create a iam role :- AmazonEC2RoleforSSM ,CloudWatchAgentServerPolicy
+create a ec2 instance :- 
+
+
+## create custom materic :-
+scripts :- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-scripts-intro.html#using_put_script
+link scripts :- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-scripts-intro.html
+link:- https://www.youtube.com/watch?v=r2NpOQp7pwE&list=PLUGuCqrhcwZwD7zG1k0gZhjuIX4SqrNlA&index=16
+link:-  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
+

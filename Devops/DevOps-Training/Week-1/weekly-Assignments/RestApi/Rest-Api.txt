@@ -1,0 +1,55 @@
+Rest Api: -  
+-> rest Api stands for Representational State Transfer. 
+-> Rest Api is based on the request-response model, and we used because there are multiple situations when we are used rest Api like when we used rest Api, we fetch the data into your script and because we are sending the request to the web-service and server is response to the service which you are request for and it returns .Json and xml format. 
+-> Rest Api have two methods: -  
+
+1: - Invoke-Rest Method: - 
+-> in the invoke rest method, the method is sent to the request to the web service and this method automatically converted. Json and xml file into the PowerShell object and invoke rest method is preprocess is automatically. 
+-> The Invoke-RestMethod cmdlet sends HTTP and HTTPS and also supports REST( Representational State transfer) requests to a WEB API or service. It efficiently deals with JSON and XML content.The Invoke-RestMethod cmdlet sends HTTP and HTTPS and also supports REST( Representational State transfer) requests to a WEB API or service. It efficiently deals with JSON and XML content.
+
+2: - Invoke-web Request: - 
+-> In the invoke web request method, we are used this because of some header and status code or raw content it returns only the web service details header, status code of the website and all.  
+
+-- Types Of API Calls in Powershell --
+1.GET Request:
+Purpose: Retrieve data from the API.
+Example:-
+-> $url = "https://api.example.com/data"
+    $response = Invoke-RestMethod -Uri $url -Method Get
+    
+2.POST Request:
+Purpose: Create a new resource on the server.
+Example :- 
+-> $url = "https://api.example.com/resource"
+$body = @{
+    key1 = "value1"
+    key2 = "value2"
+} | ConvertTo-Json
+$response = Invoke-RestMethod -Uri $url -Method Post -Body $body -ContentType "application/json"
+
+3.PUT Request:
+Purpose: Update or create a resource on the server.
+Example:-
+$url = "https://api.example.com/resource/123"
+$body = @{
+    key1 = "updatedValue1"
+    key2 = "updatedValue2"
+} | ConvertTo-Json
+$response = Invoke-RestMethod -Uri $url -Method Put -Body $body -ContentType "application/json"
+
+
+4.PATCH Request:
+Purpose: Partially update a resource on the server.
+Example:-
+$url = "https://api.example.com/resource/123"
+$body = @{
+    key1 = "updatedValue1"
+} | ConvertTo-Json
+$response = Invoke-RestMethod -Uri $url -Method Patch -Body $body -ContentType "application/json"
+
+5.DELETE Request:
+Purpose: Delete a resource on the server.
+Example:-
+$url = "https://api.example.com/resource/123"
+$response = Invoke-RestMethod -Uri $url -Method Delete
+

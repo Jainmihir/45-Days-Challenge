@@ -1,0 +1,17 @@
+# steps to create basic PowerShell module:- 
+-> Save a PowerShell script with a .psm1 extension 
+-> Use the same name for the script and the directory where the script is saved.
+-> To control user access to certain functions or variables, call Export-ModuleMember at the end of your script.
+-> If you have modules that your own module needs to load, you can use Import-Module, at the top of your module.
+-> To describe your module to the PowerShell Help system, you can either use standard help comments inside the file, or create an additional Help file.
+-> If you have additional modules, XML files, or other content you want to package with your module, you can use a module manifest.
+   >> Creating a module manifest
+   >> A module manifest is a PowerShell data file (.psd1)
+   >> The manifest file is a text file that contains a hash table of keys and values. You link a manifest file to a module by naming the manifest the same as the module, and storing the manifest in the module's root directory.
+   >> You save the file with the same name as your module and use the .psd1 file extension.
+-> To install and run your module, save the module to one of the appropriate PowerShell paths, and use Import-Module.
+
+-> Document Refer  :- "https://learn.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module?view=powershell-7.4" | Microsoft Learn 
+
+
+ 

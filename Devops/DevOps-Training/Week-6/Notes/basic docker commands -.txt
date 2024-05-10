@@ -1,0 +1,54 @@
+basic docker commands :-
+docker --version >> for checking the version
+docker -v
+docker info >> info about docker 
+docker --help 
+docker login  >> login to the docker hub
+
+
+docker images >> show the images 
+docker images -a >> show the hiden images 
+docker images -q >> for the id onlys
+docker pull >> pull the images 
+docker rmi >> remove the images 
+
+docker run -d <image_name> >> for detached mode is background me run hojayega
+docker ps -> containers listed
+docker run <image_name> -> run the containers
+docker start <container_name | id > -> start the container
+docker stop <container_name | id > ->> stop the runnig container 
+docker exec <containername> <command > >> exec the command in the docker container and exit from their
+docker container ls >> container listed
+docker start >> start the container
+docker stop >> stop the container
+docker ps -a >> for not runnig containers and hideen
+docker ps -q >> for the ids of the container  (ps ->  process status)
+
+
+docker attach <container_name> -> inside the containers
+docker search <image_name>  -> to find out the images in docker hub
+service docker status >> docker engine is on or not
+cat /etc/os-release >> konsa os chl ra h container me 
+docker diff <container_name> >> difference between base image and changes on it then
+Now, Create image of this container :-
+docker commit <container_name> <image_name>
+Now, create container from this image :-
+docker run -it --name <new_name_of_this_container> <image_name>
+
+
+
+
+
+
+docker stats -> is showing the running conatiner cpu,memory or process and networks I/O. 
+docker system df  -> is showing the disk usages of docker
+docker system prune -> remove unused data
+-> dangling images are those who are not associated with the running conatiner
+-> all stopped container
+-> all networks not used by at least one container
+-> all dangling images
+-> all build cache
+
+
+-> if build x error :- 
+CMD:-  docker build -f <file_name> -t <image_name> .

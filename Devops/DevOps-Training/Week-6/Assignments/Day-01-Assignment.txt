@@ -1,0 +1,36 @@
+## Docker commands to run any command inside the container and close the container :- 
+
+1:- docker run <Image_name>
+ -> pull the container from docker.hub repo
+
+2:- docker start <containername>
+ -> start the container 
+
+3:- docker ps -a 
+  -> listed the all running or all exited containers
+
+4:- docker exec <container name> <command>
+  -> the command is exec and run the command inside the container
+
+5:- docker exec -it <container name> bash
+  -> going to the containers 
+
+## Example :- 
+
+1:- docker run hello-world
+ -> pull the container from docker.hub repo.
+
+2:- docker run -it hello-world 
+ -> pull the container and going in the container
+
+3:- docker ps -a 
+  -> listed the all running or all exited containers
+
+4:- docker start <containername>
+ -> start the container 
+
+5:- docker exec <container name> <command name>
+  -> the command is exec and run the command inside the container
+
+6:- docker exec -it <container name> bash
+  -> going to the containers 

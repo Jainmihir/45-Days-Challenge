@@ -1,0 +1,35 @@
+Setup git into Visual studio code and prepare a document: -  
+
+
+--- Installation Git Through VSCode UI --- 
+Step1:- Download Vs code 
+
+Step2:- Download git  
+
+Step3:- Setup Git and add email id or username by the help of following command  
+    git config --global user.name "Your name" 
+    git config -global user. Email "your email" 
+
+Step4:- after config your account then 
+    1:-  Create a new file 
+    2:-  Save the file
+    3:-  if you are already setup in your account then continue and if you are not setup your account Then Follow Step5
+    4:-  Go to version control then add remote repo then config your account or authorize your account 
+    5:-  then add your remote in vs code
+    6:-  Go to version control system and click the add + <- button and add the file in staging area
+    7:-  Go to source control and commit them with your message			
+    8:-  Then click sync changes and push in your branch
+
+--- Installation Git Through Terminal in VSCode ---
+Step5: - create a folder in the vs code  
+    Mkdir folder name 
+    git init 
+    git add 
+    git commit -m "message" 
+    git branch -m main/master 
+    git remote add origin "link" 
+    git push -u origin master 
+ 
+ 
+ 
+ 

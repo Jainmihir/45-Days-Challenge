@@ -1,0 +1,34 @@
+
+Problem Statement :- Subnetting need to be implemented for assigning network to 5 different projects
+Address Block :- 192.168.0.0/16
+
+Solution :- so, we know this address block will be CLASS C 
+
+Step 1:- but because of CIDR we not borrowed any of the bitsw :- 
+        -> So, the bits are class B -> 255.255.0.0 
+        -> binary is :- 11111111.11111111.00000000.00000000
+
+Step 2:- So,we are assuming that we needed 5 subnets :- 
+        -> formula to calculate subnet mask is 2^(Range 1-10) < N
+        -> 2^3 = 8 is sufficient 
+        -> 255.255.244.0 will be the subnet mask for this 
+        -> binary :-  11111111.11111111.11100000.00000000
+
+Step 3:- CIDR Notation is :- 192.168.0.0/19
+
+Step 4:- then we perform and opertaion fot N/w id :- 
+      -> 255.255.224.0 AND 192.168.0.0
+      -> Output :- 192.168.0.0
+
+Step 5:- Then We have to divide this into 5 different network  :- 
+    -> 2^N = 2^5 (in the question , this is asking for 5 different network)
+    -> 2^5 = 32 Networks
+
+Step 6:- Then we have find no of host :- 
+    -> 2^3-2 ( 3 will be remaning bits from the subnet binary)
+    -> 2^3-2 = 6 Host
+    -> NOTE :- Here 2 , we have First bit or IPAddress in network is Network Id and last bit or ip address will be broadcast Id
+
+Step 7:- Then we find the number of IP Address :- 
+    -> 2^3 ( 3 is host bits)
+    -> 2^3 = 8 IP Address in each block

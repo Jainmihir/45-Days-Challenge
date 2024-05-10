@@ -1,0 +1,43 @@
+
+Problem StateMent :- 
+
+-> Subnet the Class C IP Address 205.11.2.0 so that you have 30 subnets:- 
+-> What is the subnet mask for the maximum number of hosts?
+-> How many hosts can each subnet have?
+-> What is the IP address of host 3 on subnet 2? 
+
+Solution :- 
+
+step 1:- First We know we have 30 subnets :-
+        ->  So, 2^5 = 32 , I need to borrow the 5 bits from class C bits 
+        ->  so the address of class c is 255.255.255.0
+        ->  after we borrow the bits the address subnet mask binary value is 
+        ->  11111111.11111111.11111111.11111000 which is equal to in decimal 255.255.255.248
+
+step 2:- Then we find the number of network :- 
+        -> formula is 2^N (N == No of bits from you can borrowed )
+        -> 2^5 = 32 , So the number of network is 32 
+
+step 3:- Then we find the number of IP address :- 
+        -> Formula :- 2^N (N == No of Host Bits)
+        -> 2^3 = 8 Ip address , So the ip address is 8
+
+step 4:- Then We find the number of hosts :- 
+        -> Formula :- 2^N-2 (N== No bits remaning in host bits )
+        -> 2^3-2 = 8-2 = 6 Host
+        NOTE :- Here 2 , we have First bit or IPAddress in network is Network Id and last bit or ip address will be broadcast Id
+
+Question :- 
+Ques :- What is the subnet mask for the maximum number of hosts?
+Solution :-  255.255.255.248  , Hosts is :- 6 
+
+Ques :- How many hosts can each subnet have?
+Solution :- 2^3-2 = 6 Host 
+
+Ques :- What is the IP address of host 3 on subnet 2? 
+Solution :- The IP address of host 3 on subnet 2 is 205.11.2.11, which is obtained by adding the subnet and host bits to the network bits: 11001101.00001011.00000010.00001011
+        -> It have 32 Network that means i have 2^3 = 8 IPAddresses
+        -> So that means 1 Address of top is networkID and last Address is boardcast Id
+        -> So, range for Subnet 2 is from 205.11.2.9 to 205.11.2.14. 
+        -> So, we have 6 host in network
+        -> so, that means host3 on subnet 2 IPAddress is 205.11.2.11.

@@ -1,0 +1,58 @@
+# What is PowerShell execution policy? 
+ 
+-> PowerShell's execution policy is a safety feature that controls the conditions under which PowerShell loads configuration files and runs scripts.  
+-> This feature helps prevent the execution of malicious scripts. -> The execution policy for a particular session is stored only in memory and is lost when the session is closed. 
+ 
+# PowerShell execution policies: - 
+ 
+1. All Signed: - -> scripts can run. 
+-> requires that all scripts and configurations files be signed by a trusted publisher, including scripts that you write on the local computer. 
+-> prompts you before running scripts from publishers that you haven't yet classified as trusted or untrusted. 
+-> Risks running signed, but malicious, scripts. 
+ 
+2. Bypass: - 
+-> Nothing is blocked and there are no warnings or prompts 
+ 
+3. Default: - 
+-> Restricted for windows clients. 
+-> Remote Signed for windows users. 
+ 
+ 
+ 
+4. Remote Signed: - 
+-> the default execution policy for windows server computers. 
+-> scripts can run. 
+-> Requires a digital signature from a trusted publisher on scripts and configuration files that are downloaded from the internet which includes email and instant messaging programs. 
+-> Doesn't require digital signatures on scripts that are written on the local computer and not downloaded from the internet. 
+ 
+ 
+5. Restricted: - 
+-> the default execution policy for windows client computers. 
+-> permits individual commands but does not allow scripts. -> prevents running of all script's files, including formatting and configurations and configurations files (.ps1xml), module script files (. psm1), and PowerShell profiles(.ps1). 
+ 
+6. Undefined: - 
+-> if the execution policy in all scopes is undefined, the effective policy is restricted for windows clients and remote signed for windows server. 
+ 
+7. Unrestricted: - 
+-> unsigned scripts can run. There is a risk of running malicious scripts. 
+-> warns the user before running scripts and configuration files that are not from the local internet zone. 
+ 
+ 
+# Execution policy scope: - 
+a. Machine Policy 
+b. User Policy 
+c. Process 
+d. Current User 
+e. Local Machine 
+ 
+-> using Remote-signed I will run the restricted script and change into the unrestricted 
+Step 1:- please refer Assignment Day-01 Execution Policy.PDF 
+Step 2: - we can open the PowerShell as a Run as administration because of the restricted script 
+Step 3: -  
+a. I will run the script on the administration policy by using 
+    Command: - Set-Execution Policy - Execution Policy Remote Signed 
+b. Then the script is asking for permission then we will proceed them and write YES/Y. 
+c. then the script can run   
+ 
+ 
+ 

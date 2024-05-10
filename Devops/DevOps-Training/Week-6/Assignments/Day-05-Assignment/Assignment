@@ -1,0 +1,31 @@
+## Create two containers and both the containers should share the common volume :-
+
+STEP 1:- Created a Image :- 
+- Docker File : Simple Image For Updating and installing curl in the image
+- Then We Created a Image :- docker build -t <new_image_name> .
+
+STEP 2:- Created a Volume :-
+cmd  :- docker volume create <volume_name>
+
+STEP 3:- Created a container with that image :- 
+cmd :- docker run -it --name <name_of_container1> -v <volume_name>:<path_of_container_that_attach> <image_name> 
+
+STEP 4:- If we attach the same volume :-
+cmd :- docker run -it --name <name_of_container2> -v <volume_name>:<path_of_container_that_attach> <image_name>
+
+STEP 5:- To, Check The Volume path :-
+-> cd /var/lib/docker/volumes/Myvol1/_data
+:: change the permissions of that file
+-> sudo chmod 777 /var/lib/docker/volumes/Myvol1/_data
+-> sudo ls /var/lib/docker/volumes/Myvol1/_data
+
+## Example :- 
+
+docker build -t <mj> .
+cmd  :- docker volume create Myvol1
+cmd  :- docker run -it --name mihir1  -v Myvol1:/home/abc new_image bash
+        -> Created one file inside this container.
+cmd  :- docker run -it --name mihir2  -v Myvol1:/home/abc new_image bash
+        -> Created one file inside this continer.
+cmd  :- -> sudo ls /var/lib/docker/volumes/Myvol1/_data
+        -> Files are showing in this container.

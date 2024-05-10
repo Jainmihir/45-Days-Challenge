@@ -1,0 +1,22 @@
+//  Write git commands to add all files in staging area, commit to move changes from the staging area and push those changes to the main repository.
+
+// For new file 
+
+git init 
+git add filename/.
+git commit -m "first commit"
+git branch -m main 
+git remote add origin "Link"
+git push -u origin main
+
+
+// for already set remote
+
+-> add staging area to file
+git add . 
+
+-> for commit to move changes
+git commit -m "second commit"
+
+-> for push the changes into the main repo.
+git push

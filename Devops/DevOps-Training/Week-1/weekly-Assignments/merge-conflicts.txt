@@ -1,0 +1,67 @@
+-> Merge Conflicts: -  
+
+1:-  We have one branch called Master and master have some files like
+ --> helloworld.cpp
+	code:- cout<<"hello world";
+	and this code is push into remote repo
+	
+	git add .
+	git commit -m "changes in master"
+	git push origin master
+	
+
+2:- then we have created new branch called main
+
+	git checkout -b main
+
+-->> helloworld.cpp 
+       code :- cout<<"new hello world";
+	and this code is committed in new branch
+	
+	git add .
+	git commit -m "changes in main"
+	git checkout master
+
+3:- then we merge the code into the master
+	
+	git merge main
+-> then in the merging with main we find this error
+
+Auto-merging helloworld.cpp
+CONFLICT (content): Merge conflict in helloworld.cpp
+Automatic merge failed; fix conflicts and then commit the result.
+
+-> so, the resolved editor is opened and in the editor we show accept both the changes  and the accept incoming changes or both the changes 
+-> then we solved by editor
+	git add .
+	git commit -m "lastmessage"
+	git push
+
+
+-> from vs code terminal to solve then add these commands
+	git add .
+	git merge --continue
+	git push
+
+Conflicts occur when two branches edit in the same file on the same line. 
+Example: -  
+Branch: - main -> push the file and say hello in 2 lines 
+Branch: - main1 -> also pull the code and write in same file say hi in 2 lines 
+
+
+
+-> Then we occur the merge conflicts 
+
+
+
+SO, solution of this problem is:-  
+1: - pick one pushed code 
+2: - pick 2nd pushed code 
+3: - pick both (but in our industries cases we choose only one according to the code like what varibable is used next line). 
+
+
+
+->> conflict is solved with the help of two types  
+1:- remotely 
+2:- editor
+ 

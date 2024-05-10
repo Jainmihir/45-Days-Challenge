@@ -1,0 +1,33 @@
+-> there are 4 main types of git workflow: -  
+ 
+1: - centralized: -  
+-> In the centralized git workflow, I have only one centralized repository and every user commits the code into one global repo. 
+-> In the centralized, when the code is pushed to the repo then, they have many chances to change the code in repo. 
+-> it is possible for others to see your changes by updating the code. 
+-> Allows all team members to make changes directly to the main branch, with every change logged in a running history.
+-> A centralized Git workflow enables all team members to make changes directly to the main branch (sometimes called the master branch or default branch), with every change logged in a running history.
+-> A centralized workflow involves every contributor committing to the main branch without using any other branch.
+
+2: - Distributed: -  
+-> In the distributed workflow, we have one remote repo and contains multiple local repos at that time, so changes are made locally, and the changes are made by every local user on local machine and push them into the repo  . 
+-> it's not possible to change your code. 
+-> In a distributed system, Git gives each developer a local copy of the entire project
+-> Developers can make changes to their local copy until they explicitly share them.
+
+3: - Feature branching: - 
+-> In feature branching we have one master branch
+-> the second one is feature branch 
+-> we edit the code and add some functionalities to the code in the feature branch 
+-> merge code into the master branch
+-> The core idea behind the Feature Branch Workflow is that all feature development should take place in a dedicated branch instead of the main branch
+-> This encapsulation makes it easy for multiple developers to work on a particular feature without disturbing the main codebase.
+
+
+4: - Git-Flow workflow: - 
+-> Git flow is a popular Git branching strategy aimed at simplifying release management 
+-> LetSuppose:- we have three branches one is master and second one is primary and third one is feature, so we add the functionalities in the feature branch and merge them with the primary branch and check the code and test the functionalities in the primary branch and then we push them into the master branch. 
+-> Master: Represents the stable production-ready code.
+-> Develop: Serves as the main integration branch where feature branches are merged.
+-> Feature branches: Created for developing new features. They branch off from the develop branch and are merged back into it.
+-> Release branches: Created when preparing for a new release. They branch off from the develop branch, and any necessary final adjustments can be made before merging into both develop and master.
+-> Hotfix branches: Used to quickly address issues in the production code. They branch off from the master branch, and once the fix is complete, they are merged into both master and develop.

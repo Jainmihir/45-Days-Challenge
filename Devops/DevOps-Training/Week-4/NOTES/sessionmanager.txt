@@ -1,0 +1,6 @@
+## session manager :-
+create an iam role give permission to it AmazonSSMManagedInstanceCore
+modify the iam role and attach to ec2 instance 
+firstly ssh to it check the session manager is installed or not 
+to check the status of the session manager :- sudo systemctlstatus snap.amazon-ssm-agent.amazon-ssh-agent-service 
+then remove the security groups to ec2 instances then connect with the session manager 

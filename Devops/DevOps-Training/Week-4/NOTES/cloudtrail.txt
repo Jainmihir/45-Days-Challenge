@@ -1,0 +1,9 @@
+## CLOUD TRAIL :- 
+-> cloud trail is enabled on your aws account when you create it
+-> when activity occurs in your aws accoount , that activity is recorded in a cloud trail event.
+-> you can easily view recent events in the cloudtrail console by going to event history
+-> event history allows you to view search and download the past 90 days of activity in your aws account.
+-> visibility into your aws account activity is a key aspect of security  and operational best practices.
+-> you can identify who or what took which action, what resources were acted upon, when the event occured and other details to help you analyze and respond to activity in your aws account.
+
+## Implementation :- 
