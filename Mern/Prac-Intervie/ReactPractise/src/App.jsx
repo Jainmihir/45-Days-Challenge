@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Mobile from './List/Mobile'
@@ -28,11 +28,16 @@ function App() {
 
   return (
     <>
+      <div>
       {Mobilelist.map((ele) => {
         return <Mobile image={ele.image} name={ele.name} price={ele.price}/>
       })} 
+
       {/* <Mobile image={book1.image} name={book1.name} price={book1.price}/> */}
+      </div>
     </>
+    
+    
   )
 }
 

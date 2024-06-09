@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
+
 
 export default function Mobile(props){
     const {image,name,price} = props 
@@ -10,7 +11,6 @@ export default function Mobile(props){
         fetch("https://api.github.com/users")
         .then((res) => res.json())
         .then((data) => setUsers(data))
-
     },[])
 
     
@@ -24,18 +24,17 @@ export default function Mobile(props){
 
     return (
         
-        
             <div>
                 <h1>User List</h1>
                 <ul>
                     {
                         users.map(user => {
-                           return <li key={user.id}>{user.login}</li>
+                           return <li key={user.id}><a href={user.html_url}>{user.login}</a></li>
                         })
                     }
                 </ul>
             </div>
-            
+
 
        
 
