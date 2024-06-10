@@ -12,7 +12,7 @@ function HistoryCard({ urlNumber, originalUrl, shortenedUrl, clickCount }) {
                     <p className="text-gray-800 text-xs truncate">{originalUrl}</p>
                 </div>
                 <div>
-                    <a href={shortenedUrl} className="text-blue-500 hover:underline text-xs block">
+                    <a href={shortenedUrl} className="text-blue-500 hover:underline text-xs block" rel="noopener noreferrer">
                         {shortenedUrl}
                     </a>
                 </div>
